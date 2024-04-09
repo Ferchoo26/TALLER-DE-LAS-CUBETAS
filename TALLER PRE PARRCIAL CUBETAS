@@ -1,0 +1,42 @@
+#include <iostream>
+#include <ctime>   
+
+using namespace std;
+
+void organizarnumeros(int matriz[11][11], int numero) {
+    int primerdigito = numero / 100;
+    for (int i = 0; i < 11; ++i) {
+        if (matriz[primerdigito][i] == 0) {
+            matriz[primerdigito][i] = numero;
+            return;
+        }
+    }
+}
+
+int main() {
+    int matriz[11][11] = {0};
+    srand(time(0)); 
+
+  
+    for (int i = 1; i <= 10; ++i) {
+        matriz[0][i] = i;
+        matriz[i][0] = i;
+    }
+
+ 
+    for (int n = 0; n < 10; ++n) {
+        int numero = 100 + rand() % 900; 
+        organizarnumeros(matriz, numero);
+    }
+
+    
+    cout << "Matriz:" << endl;
+    for (int i = 0; i < 11; ++i) {
+        for (int j = 0; j < 11; ++j) {
+            cout << matriz[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
